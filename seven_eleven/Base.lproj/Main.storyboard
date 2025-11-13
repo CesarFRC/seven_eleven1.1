@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f2u-bP-84F">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
@@ -12,45 +12,104 @@
         <!--SplashAnimacion-->
         <scene sceneID="zvw-JX-Lg7">
             <objects>
-                <viewController title="SplashAnimacion" id="f2u-bP-84F" sceneMemberID="viewController">
+                <viewController title="SplashAnimacion" id="f2u-bP-84F" customClass="AnimacionPantalla" customModule="seven_eleven" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q7d-I9-jnY">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Captura de pantalla 2025-11-10 a la(s) 12.40.51 p.m..png" translatesAutoresizingMaskIntoConstraints="NO" id="gri-fp-tmo">
-                                <rect key="frame" x="76" y="272" width="240" height="208"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_seven_eleven.png" translatesAutoresizingMaskIntoConstraints="NO" id="gri-fp-tmo" userLabel="imagenLogo">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6F8-CD-vk1"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.062745098040000002" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gri-fp-tmo" firstAttribute="top" secondItem="q7d-I9-jnY" secondAttribute="top" id="0qm-Vb-GAc"/>
+                            <constraint firstAttribute="bottom" secondItem="gri-fp-tmo" secondAttribute="bottom" id="4G9-vQ-zxv"/>
+                            <constraint firstItem="gri-fp-tmo" firstAttribute="leading" secondItem="q7d-I9-jnY" secondAttribute="leading" id="Uvc-N7-Gwh"/>
+                            <constraint firstAttribute="trailing" secondItem="gri-fp-tmo" secondAttribute="trailing" id="Zyd-rh-BtE"/>
+                            <constraint firstItem="gri-fp-tmo" firstAttribute="centerX" secondItem="q7d-I9-jnY" secondAttribute="centerX" id="a2w-mO-dyu"/>
+                            <constraint firstItem="gri-fp-tmo" firstAttribute="centerY" secondItem="q7d-I9-jnY" secondAttribute="centerY" id="mmW-ob-q1H"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imagenLogo" destination="gri-fp-tmo" id="JPD-4K-PF1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wY-KV-8SG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-715.26717557251902" y="-13.380281690140846"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="seven_eleven" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="Menu" storyboardIdentifier="Menu" title="Menu" id="BYZ-38-t0r" customClass="ViewController" customModule="seven_eleven" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MENU DEL JUEGO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tID-RF-eiT">
+                                <rect key="frame" x="130" y="44" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkG-Tp-SVC" userLabel="Jugar_Boton">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="562"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="jugar-removebg-preview.png"/>
+                                <connections>
+                                    <segue destination="iru-Hs-QKJ" kind="presentation" id="D3v-Yz-Vbo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlz-lM-f30">
+                                <rect key="frame" x="0.0" y="65" width="414" height="772"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="instruciiones-removebg-preview.png"/>
+                                <connections>
+                                    <segue destination="b1k-dq-L3f" kind="presentation" id="FRc-cE-RJC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSJ-JI-2fm">
+                                <rect key="frame" x="0.0" y="65" width="414" height="1131"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="records-removebg-preview.png"/>
+                                <connections>
+                                    <segue destination="dTT-EX-joZ" kind="presentation" id="Snb-CF-dPz"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.062745098040000002" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mlz-lM-f30" secondAttribute="trailing" id="13W-Ho-WGp"/>
+                            <constraint firstItem="qkG-Tp-SVC" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FNw-KS-jic"/>
+                            <constraint firstItem="mlz-lM-f30" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HdI-dW-MdI"/>
+                            <constraint firstItem="iSJ-JI-2fm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KZm-cO-tjH"/>
+                            <constraint firstAttribute="trailing" secondItem="iSJ-JI-2fm" secondAttribute="trailing" id="NAY-6i-MA4"/>
+                            <constraint firstItem="tID-RF-eiT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="130" id="NIC-uB-xRQ"/>
+                            <constraint firstItem="qkG-Tp-SVC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Na6-Bv-Qtu"/>
+                            <constraint firstItem="mlz-lM-f30" firstAttribute="top" secondItem="tID-RF-eiT" secondAttribute="bottom" id="RT6-xL-p5u"/>
+                            <constraint firstItem="tID-RF-eiT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SbW-bm-WBi"/>
+                            <constraint firstItem="iSJ-JI-2fm" firstAttribute="top" secondItem="tID-RF-eiT" secondAttribute="bottom" id="Ws3-VB-ciV"/>
+                            <constraint firstAttribute="trailing" secondItem="qkG-Tp-SVC" secondAttribute="trailing" id="cW4-bV-MlB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qkG-Tp-SVC" secondAttribute="bottom" constant="300" id="ccf-Yv-wAI"/>
+                            <constraint firstAttribute="bottom" secondItem="iSJ-JI-2fm" secondAttribute="bottom" constant="-300" id="g7v-56-bww"/>
+                            <constraint firstItem="tID-RF-eiT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="130" id="n6n-pu-bBr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mlz-lM-f30" secondAttribute="bottom" constant="25" id="yaR-ov-PnS"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-27"/>
+            <point key="canvasLocation" x="131.16279069767441" y="-27.038626609442062"/>
         </scene>
-        <!--View Controller-->
+        <!--Instruciones-->
         <scene sceneID="QkY-c3-Mkw">
             <objects>
-                <viewController id="b1k-dq-L3f" sceneMemberID="viewController">
+                <viewController title="Instruciones" modalPresentationStyle="fullScreen" id="b1k-dq-L3f" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vZc-VM-CKD">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="4rD-nI-b0H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -60,12 +119,12 @@
             </objects>
             <point key="canvasLocation" x="105" y="653"/>
         </scene>
-        <!--View Controller-->
+        <!--Records-->
         <scene sceneID="7xD-eB-gTF">
             <objects>
-                <viewController id="dTT-EX-joZ" sceneMemberID="viewController">
+                <viewController title="Records" modalPresentationStyle="fullScreen" id="dTT-EX-joZ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nMw-PZ-WpJ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="HX4-bx-G86"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -75,15 +134,27 @@
             </objects>
             <point key="canvasLocation" x="1002" y="661"/>
         </scene>
-        <!--View Controller-->
+        <!--Juego-->
         <scene sceneID="2rB-DU-fde">
             <objects>
-                <viewController id="iru-Hs-QKJ" sceneMemberID="viewController">
+                <viewController title="Juego" modalPresentationStyle="fullScreen" id="iru-Hs-QKJ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x4Q-3y-kXk">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRM-80-ege">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="JeC-1c-XA9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                        <constraints>
+                            <constraint firstItem="JeC-1c-XA9" firstAttribute="bottom" secondItem="wRM-80-ege" secondAttribute="bottom" id="5KP-xm-z9i"/>
+                            <constraint firstItem="wRM-80-ege" firstAttribute="leading" secondItem="JeC-1c-XA9" secondAttribute="leading" id="5eJ-lq-AeP"/>
+                            <constraint firstItem="wRM-80-ege" firstAttribute="top" secondItem="JeC-1c-XA9" secondAttribute="top" id="uyI-ku-ryT"/>
+                            <constraint firstItem="JeC-1c-XA9" firstAttribute="trailing" secondItem="wRM-80-ege" secondAttribute="trailing" id="yyy-xs-5v2"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8C3-LZ-gur" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -92,9 +163,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Captura de pantalla 2025-11-10 a la(s) 12.40.51 p.m..png" width="557" height="439"/>
+        <image name="instruciiones-removebg-preview.png" width="433" height="577"/>
+        <image name="jugar-removebg-preview.png" width="433" height="577"/>
+        <image name="logo_seven_eleven.png" width="1024" height="1024"/>
+        <image name="records-removebg-preview.png" width="433" height="577"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
