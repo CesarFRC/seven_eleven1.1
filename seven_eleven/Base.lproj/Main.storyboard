@@ -62,7 +62,6 @@
                                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="34f-vu-9hd"/>
                                             <constraint firstItem="3MF-H5-HL4" firstAttribute="centerX" secondItem="b9x-gF-DVO" secondAttribute="centerX" id="hEN-Xd-7u9"/>
@@ -81,7 +80,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemMintColor"/>
                                         <constraints>
                                             <constraint firstItem="f8p-OG-vtf" firstAttribute="centerY" secondItem="HeW-Wz-4zO" secondAttribute="centerY" id="d4W-jC-FZm"/>
                                             <constraint firstItem="f8p-OG-vtf" firstAttribute="centerX" secondItem="HeW-Wz-4zO" secondAttribute="centerX" id="pkn-x7-ypl"/>
@@ -99,7 +97,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <constraints>
                                             <constraint firstItem="Heu-S3-fhs" firstAttribute="centerY" secondItem="nu5-RU-X3h" secondAttribute="centerY" id="IIL-Kp-ySN"/>
                                             <constraint firstItem="Heu-S3-fhs" firstAttribute="centerX" secondItem="nu5-RU-X3h" secondAttribute="centerX" id="IV8-uG-uP4"/>
@@ -117,7 +114,6 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="yhD-OE-Xdd" firstAttribute="centerY" secondItem="Sdd-kk-o2y" secondAttribute="centerY" id="tdo-HD-wew"/>
                                             <constraint firstItem="yhD-OE-Xdd" firstAttribute="centerX" secondItem="Sdd-kk-o2y" secondAttribute="centerX" id="v3T-u8-JKr"/>
@@ -181,107 +177,129 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="montes.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="BtQ-I8-pWN">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRM-80-ege">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gNB-Qb-596">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="182"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cXA-HH-erh">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="b0d-lX-348">
-                                                <rect key="frame" x="20" y="70" width="390" height="50"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNB-Qb-596">
+                                                <rect key="frame" x="0.0" y="0.0" width="430" height="310.66666666666669"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minecraft-full-heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="dff-R1-weP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vidas: 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY8-wv-nzd">
-                                                        <rect key="frame" x="76" y="17" width="67.333333333333314" height="16"/>
-                                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiempo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd8-nx-LsQ">
-                                                        <rect key="frame" x="169.33333333333334" y="17" width="59" height="16"/>
-                                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puntos:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQh-j7-S0O">
-                                                        <rect key="frame" x="254.33333333333337" y="17" width="59" height="16"/>
-                                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronda:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jM5-qf-0JF">
-                                                        <rect key="frame" x="339.33333333333331" y="17" width="50.666666666666686" height="16"/>
-                                                        <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="b0d-lX-348">
+                                                        <rect key="frame" x="37" y="130.33333333333334" width="356.33333333333331" height="50"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minecraft-full-heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="dff-R1-weP">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vidas: 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY8-wv-nzd">
+                                                                <rect key="frame" x="76" y="18.333333333333314" width="57.666666666666657" height="13.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="12"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiempo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd8-nx-LsQ">
+                                                                <rect key="frame" x="159.66666666666666" y="18.333333333333314" width="50.666666666666657" height="13.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="12"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puntos:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQh-j7-S0O">
+                                                                <rect key="frame" x="236.33333333333329" y="18.333333333333314" width="50.666666666666657" height="13.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="12"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronda:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jM5-qf-0JF">
+                                                                <rect key="frame" x="313" y="18.333333333333314" width="43.333333333333314" height="13.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="12"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ylj-fx-KmX">
-                                        <rect key="frame" x="0.0" y="182" width="430" height="475"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w1F-y1-oL1">
-                                                <rect key="frame" x="11" y="137.66666666666669" width="408" height="200"/>
+                                                <constraints>
+                                                    <constraint firstItem="b0d-lX-348" firstAttribute="centerX" secondItem="gNB-Qb-596" secondAttribute="centerX" id="7oN-Jz-vjl"/>
+                                                    <constraint firstItem="b0d-lX-348" firstAttribute="centerY" secondItem="gNB-Qb-596" secondAttribute="centerY" id="v5e-ZU-H9b"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylj-fx-KmX">
+                                                <rect key="frame" x="0.0" y="310.66666666666663" width="430" height="310.66666666666663"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dado6.png" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-eo-M55">
-                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="oPA-eo-M55" secondAttribute="height" multiplier="1:1" id="pEH-7p-o95"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dado6.png" translatesAutoresizingMaskIntoConstraints="NO" id="08w-Rw-OA4">
-                                                        <rect key="frame" x="208" y="0.0" width="200" height="200"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="08w-Rw-OA4" secondAttribute="height" multiplier="1:1" id="cbc-9n-Gu0"/>
-                                                        </constraints>
-                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w1F-y1-oL1">
+                                                        <rect key="frame" x="11" y="55.333333333333314" width="408" height="200"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dado6.png" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-eo-M55">
+                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="oPA-eo-M55" secondAttribute="height" multiplier="1:1" id="pEH-7p-o95"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dado6.png" translatesAutoresizingMaskIntoConstraints="NO" id="08w-Rw-OA4">
+                                                                <rect key="frame" x="208" y="0.0" width="200" height="200"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="08w-Rw-OA4" secondAttribute="height" multiplier="1:1" id="cbc-9n-Gu0"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
-                                            </stackView>
+                                                <constraints>
+                                                    <constraint firstItem="w1F-y1-oL1" firstAttribute="centerX" secondItem="Ylj-fx-KmX" secondAttribute="centerX" id="Dni-jH-hRd"/>
+                                                    <constraint firstItem="w1F-y1-oL1" firstAttribute="centerY" secondItem="Ylj-fx-KmX" secondAttribute="centerY" id="Xn5-Cb-1HY"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQa-hV-miR">
+                                                <rect key="frame" x="0.0" y="621.33333333333337" width="430" height="310.66666666666663"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31A-Ud-d53">
+                                                        <rect key="frame" x="213.66666666666669" y="127.66666666666664" width="142.66666666666669" height="55.666666666666671"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="Tirar_3.png"/>
+                                                        <connections>
+                                                            <action selector="Tirar:" destination="iru-Hs-QKJ" eventType="touchUpInside" id="Drp-KH-N5t"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z1-HZ-EUo">
+                                                        <rect key="frame" x="43" y="113" width="74" height="84.666666666666686"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="Regresar-sin_fondo_cortado 2.png"/>
+                                                        <connections>
+                                                            <action selector="accionBotonAtras:" destination="iru-Hs-QKJ" eventType="touchUpInside" id="e8L-H7-VTZ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="1Z1-HZ-EUo" firstAttribute="centerY" secondItem="oQa-hV-miR" secondAttribute="centerY" id="L5A-ka-2zX"/>
+                                                    <constraint firstItem="1Z1-HZ-EUo" firstAttribute="centerX" secondItem="oQa-hV-miR" secondAttribute="centerX" constant="-135" id="WSj-LT-KBU"/>
+                                                    <constraint firstItem="31A-Ud-d53" firstAttribute="centerX" secondItem="oQa-hV-miR" secondAttribute="centerX" constant="70" id="i8J-cn-JHk"/>
+                                                    <constraint firstItem="31A-Ud-d53" firstAttribute="centerY" secondItem="oQa-hV-miR" secondAttribute="centerY" id="mun-dl-qRJ"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQa-hV-miR">
-                                        <rect key="frame" x="0.0" y="652" width="430" height="260"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31A-Ud-d53">
-                                                <rect key="frame" x="144" y="109.66666666666667" width="142.66666666666663" height="55.666666666666671"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="Tirar_3.png"/>
-                                                <connections>
-                                                    <action selector="Tirar:" destination="iru-Hs-QKJ" eventType="touchUpInside" id="Drp-KH-N5t"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z1-HZ-EUo">
-                                                <rect key="frame" x="30" y="100.33333333333331" width="74" height="84.666666666666686"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="Regresar-sin_fondo_cortado 2.png"/>
-                                                <connections>
-                                                    <action selector="accionBotonAtras:" destination="iru-Hs-QKJ" eventType="touchUpInside" id="e8L-H7-VTZ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBrownColor"/>
-                                    </view>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cXA-HH-erh" secondAttribute="trailing" id="Etd-XZ-uog"/>
+                                    <constraint firstItem="cXA-HH-erh" firstAttribute="top" secondItem="wRM-80-ege" secondAttribute="top" id="Hil-la-6eh"/>
+                                    <constraint firstAttribute="bottom" secondItem="cXA-HH-erh" secondAttribute="bottom" id="IjK-FB-Akp"/>
+                                    <constraint firstItem="cXA-HH-erh" firstAttribute="leading" secondItem="wRM-80-ege" secondAttribute="leading" id="joL-a0-1sB"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JeC-1c-XA9"/>
-                        <color key="backgroundColor" systemColor="systemMintColor"/>
                         <constraints>
                             <constraint firstItem="JeC-1c-XA9" firstAttribute="bottom" secondItem="wRM-80-ege" secondAttribute="bottom" id="5KP-xm-z9i"/>
                             <constraint firstItem="wRM-80-ege" firstAttribute="leading" secondItem="JeC-1c-XA9" secondAttribute="leading" id="5eJ-lq-AeP"/>
+                            <constraint firstItem="JeC-1c-XA9" firstAttribute="bottom" secondItem="BtQ-I8-pWN" secondAttribute="bottom" id="K5w-yE-xCK"/>
+                            <constraint firstItem="JeC-1c-XA9" firstAttribute="trailing" secondItem="BtQ-I8-pWN" secondAttribute="trailing" id="d7R-KJ-rav"/>
+                            <constraint firstItem="BtQ-I8-pWN" firstAttribute="leading" secondItem="JeC-1c-XA9" secondAttribute="leading" id="dtY-xW-uFh"/>
                             <constraint firstItem="wRM-80-ege" firstAttribute="top" secondItem="JeC-1c-XA9" secondAttribute="top" id="uyI-ku-ryT"/>
+                            <constraint firstItem="BtQ-I8-pWN" firstAttribute="top" secondItem="JeC-1c-XA9" secondAttribute="top" id="yiS-qf-RwA"/>
                             <constraint firstItem="JeC-1c-XA9" firstAttribute="trailing" secondItem="wRM-80-ege" secondAttribute="trailing" id="yyy-xs-5v2"/>
                         </constraints>
                     </view>
@@ -305,23 +323,9 @@
         <image name="jugar_final -reducion_pixeles.2.jpeg" width="320" height="86"/>
         <image name="logo_seven_eleven.png" width="1024" height="1024"/>
         <image name="minecraft-full-heart.png" width="50" height="50"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="montes.jpeg" width="729" height="1080"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
