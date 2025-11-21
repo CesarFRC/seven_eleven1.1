@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  seven_eleven
-//
-//  Created by donlike on 10/11/25.
-//
 
 import UIKit
 
