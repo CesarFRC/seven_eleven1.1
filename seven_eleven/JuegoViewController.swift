@@ -28,6 +28,9 @@ class JuegoViewController: UIViewController {
         var vidasRestantes = 3
         var puntoObjetivo: Int?
     
+        var gameTimer: Timer?
+        var segundosTranscurridos: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dadoIzquierdo.image = UIImage(named: "dado1")
@@ -40,18 +43,46 @@ class JuegoViewController: UIViewController {
     }
     
     func cerrarVistaModal() {
+        detenerTemporizador()
         self.dismiss(animated: true) {
         }
     }
     
     @IBAction func Tirar(_ sender: Any) {
-                guard vidasRestantes > 0 else {
-                    mostrarAlerta(titulo: "Juego Terminado", mensaje: "¡Reinicia para jugar de nuevo!")
-                    return
+        guard vidasRestantes > 0 else {
+        mostrarAlerta(titulo: "Juego Terminado", mensaje: "¡Reinicia para jugar de nuevo!")
+        return
                 }
+        
+        if gameTimer == nil {
+        iniciarTemporizador()
+                }
+        
         botonTirar.isEnabled = false
         animarDados()
     }
+    
+    @objc func actualizarContador() {
+            segundosTranscurridos += 1
+            actualizarUI()
+        }
+    
+    func iniciarTemporizador() {
+        if gameTimer == nil {
+        gameTimer = Timer.scheduledTimer(timeInterval: 1.0,
+        target: self,
+        selector: #selector(actualizarContador),
+        userInfo: nil,
+        repeats: true)
+            }
+        }
+    
+  
+
+        func detenerTemporizador() {
+            gameTimer?.invalidate()
+            gameTimer = nil
+        }
     
     func animarDados() {
 
@@ -149,6 +180,7 @@ class JuegoViewController: UIViewController {
                 tituloAlerta = "Fin del Juego "
                 mensajeAlerta = "¡Te has quedado sin vidas! Finalizaste en la Ronda \(rondaActual)."
                 juegoContinua = false
+                detenerTemporizador()
             }
             
             actualizarUI()
@@ -168,6 +200,9 @@ class JuegoViewController: UIViewController {
             } else {
                 etiquetaPuntos.text = "Tira el Punto"
             }
+            let minutos = segundosTranscurridos / 60
+            let segundos = segundosTranscurridos % 60
+            etiquetaTiempo.text = String(format: "%02d:%02d", minutos, segundos)
             
         }
         
