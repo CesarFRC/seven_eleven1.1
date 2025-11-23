@@ -53,7 +53,7 @@ class JuegoViewController: UIViewController {
     
     @IBAction func Tirar(_ sender: Any) {
         guard vidasRestantes > 0 else {
-        mostrarAlerta(titulo: "Juego Terminado", mensaje: "¡Reinicia para jugar de nuevo!")
+            mostrarAlerta(titulo: "Juego Terminado", mensaje: "Finalizaste en la Ronda \(rondaActual). Puntuación Final: \(puntuacionTotal). ¡Reinicia para jugar de nuevo!")
         return
                 }
         
@@ -136,20 +136,16 @@ class JuegoViewController: UIViewController {
             
         var mensajeAlerta = ""
         var tituloAlerta = ""
-        var juegoContinua = true
         var rondaGanadaOPerdida = false
 
         if let punto = puntoObjetivo {
             
             switch sumaTotal {
             case punto:
-                tituloAlerta = "¡Punto Ganado! "
-                mensajeAlerta = "¡Sacaste el punto \(punto) y avanzas a la Ronda \(rondaActual + 1)!"
                 rondaGanadaOPerdida = true
                 
                 if tirosEnRonda == 2 {
                     puntuacionTotal += 5
-                    mensajeAlerta += " Ganas 5 puntos."
                 }
 
                 rondaActual += 1
@@ -157,15 +153,11 @@ class JuegoViewController: UIViewController {
                 
             case 7, 11, 2, 12:
                 vidasRestantes -= 1
-                tituloAlerta = "¡Punto Perdido! "
-                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida. ¡El punto se reinicia!"
                 rondaGanadaOPerdida = true
                 puntoObjetivo = nil
                 
             default:
-                tituloAlerta = "Sigue Tirando"
-                mensajeAlerta = "El punto objetivo sigue siendo: **\(punto)**. ¡Vuelve a intentarlo!"
-                juegoContinua = true
+                break
             }
         }
         else {
@@ -173,20 +165,15 @@ class JuegoViewController: UIViewController {
             case 7, 11:
                 puntuacionTotal += 10
                 rondaGanadaOPerdida = true
-                tituloAlerta = "¡Ronda Ganada a la 1ra! "
-                mensajeAlerta = "Suma: \(sumaTotal). ¡Ganas 10 puntos y pasas a la Ronda \(rondaActual + 1)!"
                 rondaActual += 1
                 
             case 2, 12:
                 vidasRestantes -= 1
-                tituloAlerta = "Vida Perdida "
-                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida."
+
                 rondaGanadaOPerdida = true
                 
             default:
                 puntoObjetivo = sumaTotal
-                tituloAlerta = "Punto Establecido"
-                mensajeAlerta = "El punto es **\(sumaTotal)**. Ahora debes sacar \(sumaTotal) de nuevo ANTES de sacar 7, 11, 2 o 12."
             }
         }
             
@@ -197,13 +184,12 @@ class JuegoViewController: UIViewController {
         if vidasRestantes <= 0 {
             tituloAlerta = "Fin del Juego "
             mensajeAlerta = "¡Te has quedado sin vidas! Finalizaste en la Ronda \(rondaActual). Puntuación Final: \(puntuacionTotal)"
-            juegoContinua = false
             detenerTemporizador()
         }
             
         actualizarUI()
 
-        if juegoContinua || vidasRestantes <= 0 {
+        if  vidasRestantes <= 0 {
             mostrarAlerta(titulo: tituloAlerta, mensaje: mensajeAlerta)
         }
     }
