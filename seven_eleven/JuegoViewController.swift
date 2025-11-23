@@ -133,7 +133,7 @@ class JuegoViewController: UIViewController {
     func procesarResultado(dado1: Int, dado2: Int) {
         let sumaTotal = dado1 + dado2
         print("Resultado de la tirada: \(dado1) y \(dado2). Total: \(sumaTotal). Ronda: \(rondaActual). Punto: \(puntoObjetivo ?? 0). Tiro: \(tirosEnRonda)")
-          
+            
         var mensajeAlerta = ""
         var tituloAlerta = ""
         var juegoContinua = true
@@ -158,10 +158,9 @@ class JuegoViewController: UIViewController {
             case 7, 11, 2, 12:
                 vidasRestantes -= 1
                 tituloAlerta = "¡Punto Perdido! "
-                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida, ¡pero pasas a la Ronda \(rondaActual + 1)!"
+                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida. ¡El punto se reinicia!"
                 rondaGanadaOPerdida = true
                 puntoObjetivo = nil
-                rondaActual += 1
                 
             default:
                 tituloAlerta = "Sigue Tirando"
@@ -181,9 +180,8 @@ class JuegoViewController: UIViewController {
             case 2, 12:
                 vidasRestantes -= 1
                 tituloAlerta = "Vida Perdida "
-                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida, ¡pero avanzas a la Ronda \(rondaActual + 1)!"
+                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida."
                 rondaGanadaOPerdida = true
-                rondaActual += 1
                 
             default:
                 puntoObjetivo = sumaTotal
@@ -191,29 +189,28 @@ class JuegoViewController: UIViewController {
                 mensajeAlerta = "El punto es **\(sumaTotal)**. Ahora debes sacar \(sumaTotal) de nuevo ANTES de sacar 7, 11, 2 o 12."
             }
         }
-        
+            
         if rondaGanadaOPerdida {
             tirosEnRonda = 0
         }
-          
+            
         if vidasRestantes <= 0 {
             tituloAlerta = "Fin del Juego "
             mensajeAlerta = "¡Te has quedado sin vidas! Finalizaste en la Ronda \(rondaActual). Puntuación Final: \(puntuacionTotal)"
             juegoContinua = false
             detenerTemporizador()
         }
-          
+            
         actualizarUI()
 
         if juegoContinua || vidasRestantes <= 0 {
             mostrarAlerta(titulo: tituloAlerta, mensaje: mensajeAlerta)
         }
     }
-    
     func actualizarUI() {
         etiquetaVidas.text = "\(vidasRestantes)"
         etiquetaRonda.text = "Ronda: \(rondaActual)"
-        etiquetaPuntos.text = "Score: \(puntuacionTotal)"
+        etiquetaPuntos.text = "Puntuacion: \(puntuacionTotal)"
 
 
         let minutos = segundosTranscurridos / 60
