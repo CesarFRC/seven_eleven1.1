@@ -30,6 +30,9 @@ class JuegoViewController: UIViewController {
     
         var gameTimer: Timer?
         var segundosTranscurridos: Int = 0
+        var puntuacionTotal = 0
+        var tirosEnRonda = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,8 @@ class JuegoViewController: UIViewController {
         mostrarAlerta(titulo: "Juego Terminado", mensaje: "¡Reinicia para jugar de nuevo!")
         return
                 }
+        
+        tirosEnRonda += 1
         
         if gameTimer == nil {
         iniciarTemporizador()
@@ -124,92 +129,103 @@ class JuegoViewController: UIViewController {
             self.procesarResultado(dado1: resultadoIzquierdo, dado2: resultadoDerecho)
         }
     }
-        
-        
+    
     func procesarResultado(dado1: Int, dado2: Int) {
-            let sumaTotal = dado1 + dado2
-            print("Resultado de la tirada: \(dado1) y \(dado2). Total: \(sumaTotal). Ronda: \(rondaActual). Punto: \(puntoObjetivo ?? 0)")
-            
-            var mensajeAlerta = ""
-            var tituloAlerta = ""
-            var juegoContinua = true
+        let sumaTotal = dado1 + dado2
+        print("Resultado de la tirada: \(dado1) y \(dado2). Total: \(sumaTotal). Ronda: \(rondaActual). Punto: \(puntoObjetivo ?? 0). Tiro: \(tirosEnRonda)")
+          
+        var mensajeAlerta = ""
+        var tituloAlerta = ""
+        var juegoContinua = true
+        var rondaGanadaOPerdida = false
 
-            if let punto = puntoObjetivo {
+        if let punto = puntoObjetivo {
+            
+            switch sumaTotal {
+            case punto:
+                tituloAlerta = "¡Punto Ganado! "
+                mensajeAlerta = "¡Sacaste el punto \(punto) y avanzas a la Ronda \(rondaActual + 1)!"
+                rondaGanadaOPerdida = true
                 
-                switch sumaTotal {
-                case punto:
-                    tituloAlerta = "¡Punto Ganado! "
-                    mensajeAlerta = "¡Sacaste el punto \(punto) y avanzas a la Ronda \(rondaActual + 1)!"
-                    rondaActual += 1
-                    puntoObjetivo = nil
-                    
-                case 7, 11, 2, 12:
-                    vidasRestantes -= 1
-                    tituloAlerta = "¡Punto Perdido! "
-                    mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida, ¡pero pasas a la Ronda \(rondaActual + 1)!"
-                    puntoObjetivo = nil
-                    rondaActual += 1
-                    
-                default:
-                    tituloAlerta = "Sigue Tirando"
-                    mensajeAlerta = "El punto objetivo sigue siendo: **\(punto)**. ¡Vuelve a intentarlo!"
-                    juegoContinua = true
+                if tirosEnRonda == 2 {
+                    puntuacionTotal += 5
+                    mensajeAlerta += " Ganas 5 puntos."
                 }
-            }
-            else {
-                switch sumaTotal {
-                case 7, 11:
-                    tituloAlerta = "¡Ronda Ganada! "
-                    mensajeAlerta = "Suma: \(sumaTotal). ¡Pasas a la Ronda \(rondaActual + 1)!"
-                    rondaActual += 1
-                    
-                case 2, 12:
-                    vidasRestantes -= 1
-                    tituloAlerta = "Vida Perdida "
-                    mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida, ¡pero avanzas a la Ronda \(rondaActual + 1)!"
-                    rondaActual += 1
-                    
-                default:
-                    puntoObjetivo = sumaTotal
-                    tituloAlerta = "Punto Establecido"
-                    mensajeAlerta = "El punto es **\(sumaTotal)**. Ahora debes sacar \(sumaTotal) de nuevo ANTES de sacar 7, 11, 2 o 12."
-                }
-            }
-            
-            if vidasRestantes <= 0 {
-                tituloAlerta = "Fin del Juego "
-                mensajeAlerta = "¡Te has quedado sin vidas! Finalizaste en la Ronda \(rondaActual)."
-                juegoContinua = false
-                detenerTemporizador()
-            }
-            
-            actualizarUI()
 
-            if juegoContinua || vidasRestantes <= 0 {
-                mostrarAlerta(titulo: tituloAlerta, mensaje: mensajeAlerta)
+                rondaActual += 1
+                puntoObjetivo = nil
+                
+            case 7, 11, 2, 12:
+                vidasRestantes -= 1
+                tituloAlerta = "¡Punto Perdido! "
+                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida, ¡pero pasas a la Ronda \(rondaActual + 1)!"
+                rondaGanadaOPerdida = true
+                puntoObjetivo = nil
+                rondaActual += 1
+                
+            default:
+                tituloAlerta = "Sigue Tirando"
+                mensajeAlerta = "El punto objetivo sigue siendo: **\(punto)**. ¡Vuelve a intentarlo!"
+                juegoContinua = true
+            }
+        }
+        else {
+            switch sumaTotal {
+            case 7, 11:
+                puntuacionTotal += 10
+                rondaGanadaOPerdida = true
+                tituloAlerta = "¡Ronda Ganada a la 1ra! "
+                mensajeAlerta = "Suma: \(sumaTotal). ¡Ganas 10 puntos y pasas a la Ronda \(rondaActual + 1)!"
+                rondaActual += 1
+                
+            case 2, 12:
+                vidasRestantes -= 1
+                tituloAlerta = "Vida Perdida "
+                mensajeAlerta = "Salió \(sumaTotal). Pierdes una vida, ¡pero avanzas a la Ronda \(rondaActual + 1)!"
+                rondaGanadaOPerdida = true
+                rondaActual += 1
+                
+            default:
+                puntoObjetivo = sumaTotal
+                tituloAlerta = "Punto Establecido"
+                mensajeAlerta = "El punto es **\(sumaTotal)**. Ahora debes sacar \(sumaTotal) de nuevo ANTES de sacar 7, 11, 2 o 12."
             }
         }
         
-        
-        func actualizarUI() {
-            etiquetaVidas.text = "\(vidasRestantes)"
-            etiquetaRonda.text = "\(rondaActual)"
-            
-            if let punto = puntoObjetivo {
-                etiquetaPuntos.text = "Punto: \(punto)"
-            } else {
-                etiquetaPuntos.text = "Tira el Punto"
+        if rondaGanadaOPerdida {
+            tirosEnRonda = 0
+        }
+          
+        if vidasRestantes <= 0 {
+            tituloAlerta = "Fin del Juego "
+            mensajeAlerta = "¡Te has quedado sin vidas! Finalizaste en la Ronda \(rondaActual). Puntuación Final: \(puntuacionTotal)"
+            juegoContinua = false
+            detenerTemporizador()
+        }
+          
+        actualizarUI()
+
+        if juegoContinua || vidasRestantes <= 0 {
+            mostrarAlerta(titulo: tituloAlerta, mensaje: mensajeAlerta)
+        }
+    }
+    
+    func actualizarUI() {
+        etiquetaVidas.text = "\(vidasRestantes)"
+        etiquetaRonda.text = "Ronda: \(rondaActual)"
+        etiquetaPuntos.text = "Score: \(puntuacionTotal)"
+
+
+        let minutos = segundosTranscurridos / 60
+        let segundos = segundosTranscurridos % 60
+        etiquetaTiempo.text = String(format: "%02d:%02d", minutos, segundos)
+    }
+    
+    func mostrarAlerta(titulo: String, mensaje: String) {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        alerta.addAction(UIAlertAction(title: "Aceptar", style: .default))
+        self.present(alerta, animated: true)
             }
-            let minutos = segundosTranscurridos / 60
-            let segundos = segundosTranscurridos % 60
-            etiquetaTiempo.text = String(format: "%02d:%02d", minutos, segundos)
-            
-        }
         
-        func mostrarAlerta(titulo: String, mensaje: String) {
-            let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
-            alerta.addAction(UIAlertAction(title: "Aceptar", style: .default))
-            self.present(alerta, animated: true)
-        }
 }
 
