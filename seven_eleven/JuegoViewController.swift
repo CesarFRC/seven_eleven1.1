@@ -38,7 +38,7 @@ class JuegoViewController: UIViewController {
     var reproductorMusica: AVAudioPlayer?
     var reproductorEfectos: AVAudioPlayer?
     
-    let nombresPistasJuego = ["C418 - Subwoofer Lullaby - Minecraft Volume Alpha - SMORT", "Minecraft Volume Alpha - 14 - Clark - C418"]
+    let pistaJuego = "Minecraft Volume Alpha - 14 - Clark - C418"
     let sonidoDado = "tiro_de_dados"
     let sonidoPerderVida = "Muerte"
         
@@ -105,7 +105,7 @@ class JuegoViewController: UIViewController {
         }
     
     
-    func reproducirSonido(nombre: String) {
+        func reproducirSonido(nombre: String) {
             guard let url = Bundle.main.url(forResource: nombre, withExtension: "mp3") else {
                 print("Error: No se pudo encontrar el archivo de sonido \(nombre).mp3")
                 return
@@ -120,32 +120,19 @@ class JuegoViewController: UIViewController {
         }
         
         func iniciarMusicaDeFondo() {
-            guard nombresPistasJuego.count > 0 else { return }
-            cargarYPistaActual()
-        }
-
-        func cargarYPistaActual() {
-            let nombrePista = nombresPistasJuego[indicePistaActual]
-            
-            guard let url = Bundle.main.url(forResource: nombrePista, withExtension: "mp3") else {
-                print("Error: No se pudo encontrar el archivo \(nombrePista).mp3")
+            guard let url = Bundle.main.url(forResource: pistaJuego, withExtension: "mp3") else {
+                print("Error: No se pudo encontrar el archivo \(pistaJuego).mp3")
                 return
             }
             
             do {
                 reproductorMusica = try AVAudioPlayer(contentsOf: url)
-                //reproductorMusica?.delegate = self
-                reproductorMusica?.numberOfLoops = 0
+                reproductorMusica?.numberOfLoops = -1
                 reproductorMusica?.play()
-                print("Reproduciendo: \(nombrePista)")
+                print("Reproduciendo: \(pistaJuego) en loop.")
             } catch {
                 print("Error al inicializar el reproductor de música: \(error.localizedDescription)")
             }
-        }
-        
-        func cambiarPista() {
-            indicePistaActual = (indicePistaActual + 1) % nombresPistasJuego.count
-            cargarYPistaActual()
         }
         
         func detenerMusica() {
@@ -309,11 +296,7 @@ class JuegoViewController: UIViewController {
             }
     
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-            if player == reproductorMusica && flag {
-                cambiarPista()
-            }
-        }
+    
         
 }
 
