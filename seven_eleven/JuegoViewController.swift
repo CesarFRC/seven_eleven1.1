@@ -1,7 +1,8 @@
 import UIKit
+import AVFoundation
 
 class JuegoViewController: UIViewController {
-
+    
     @IBOutlet weak var botonTirar: UIButton!
     @IBOutlet weak var dadoIzquierdo: UIImageView!
     @IBOutlet weak var dadoDerecho: UIImageView!
@@ -24,14 +25,24 @@ class JuegoViewController: UIViewController {
     @IBOutlet weak var etiquetaVidas: UILabel!
     
     
-        var rondaActual = 1
-        var vidasRestantes = 3
-        var puntoObjetivo: Int?
+    var rondaActual = 1
+    var vidasRestantes = 3
+    var puntoObjetivo: Int?
     
-        var gameTimer: Timer?
-        var segundosTranscurridos: Int = 0
-        var puntuacionTotal = 0
-        var tirosEnRonda = 0
+    var gameTimer: Timer?
+    var segundosTranscurridos: Int = 0
+    var puntuacionTotal = 0
+    var tirosEnRonda = 0
+    
+    
+    var reproductorMusica: AVAudioPlayer?
+    var reproductorEfectos: AVAudioPlayer?
+    
+    let nombresPistasJuego = ["C418 - Subwoofer Lullaby - Minecraft Volume Alpha - SMORT", "Minecraft Volume Alpha - 14 - Clark - C418"]
+    let sonidoDado = "tiro_de_dados"
+    let sonidoPerderVida = "Muerte"
+        
+    var indicePistaActual = 0
     
     
     override func viewDidLoad() {
@@ -39,6 +50,7 @@ class JuegoViewController: UIViewController {
         dadoIzquierdo.image = UIImage(named: "dado1")
         dadoDerecho.image = UIImage(named: "dado1")
         actualizarUI()
+        iniciarMusicaDeFondo()
     }
 
     @IBAction func accionBotonAtras(_ remitente: UIButton) {
@@ -47,15 +59,18 @@ class JuegoViewController: UIViewController {
     
     func cerrarVistaModal() {
         detenerTemporizador()
+        detenerMusica()
         self.dismiss(animated: true) {
         }
     }
     
     @IBAction func Tirar(_ sender: Any) {
-        guard vidasRestantes > 0 else {
-            mostrarAlerta(titulo: "Juego Terminado", mensaje: "Finalizaste en la Ronda \(rondaActual). Puntuación Final: \(puntuacionTotal). ¡Reinicia para jugar de nuevo!")
-        return
+        if vidasRestantes <= 0 {
+                    reiniciarJuego()
+                    return
                 }
+        
+        reproducirSonido(nombre: sonidoDado)
         
         tirosEnRonda += 1
         
@@ -66,6 +81,78 @@ class JuegoViewController: UIViewController {
         botonTirar.isEnabled = false
         animarDados()
     }
+    
+    
+    func reiniciarJuego() {
+            rondaActual = 1
+            vidasRestantes = 3
+            puntoObjetivo = nil
+            segundosTranscurridos = 0
+            puntuacionTotal = 0
+            tirosEnRonda = 0
+        
+            detenerTemporizador()
+            detenerMusica()
+            iniciarMusicaDeFondo()
+            
+            detenerTemporizador()
+            
+            dadoIzquierdo.image = UIImage(named: "dado1")
+            dadoDerecho.image = UIImage(named: "dado1")
+            
+            actualizarUI()
+            
+        }
+    
+    
+    func reproducirSonido(nombre: String) {
+            guard let url = Bundle.main.url(forResource: nombre, withExtension: "mp3") else {
+                print("Error: No se pudo encontrar el archivo de sonido \(nombre).mp3")
+                return
+            }
+            
+            do {
+                reproductorEfectos = try AVAudioPlayer(contentsOf: url)
+                reproductorEfectos?.play()
+            } catch {
+                print("Error al inicializar el reproductor de efectos: \(error.localizedDescription)")
+            }
+        }
+        
+        func iniciarMusicaDeFondo() {
+            guard nombresPistasJuego.count > 0 else { return }
+            cargarYPistaActual()
+        }
+
+        func cargarYPistaActual() {
+            let nombrePista = nombresPistasJuego[indicePistaActual]
+            
+            guard let url = Bundle.main.url(forResource: nombrePista, withExtension: "mp3") else {
+                print("Error: No se pudo encontrar el archivo \(nombrePista).mp3")
+                return
+            }
+            
+            do {
+                reproductorMusica = try AVAudioPlayer(contentsOf: url)
+                //reproductorMusica?.delegate = self
+                reproductorMusica?.numberOfLoops = 0
+                reproductorMusica?.play()
+                print("Reproduciendo: \(nombrePista)")
+            } catch {
+                print("Error al inicializar el reproductor de música: \(error.localizedDescription)")
+            }
+        }
+        
+        func cambiarPista() {
+            indicePistaActual = (indicePistaActual + 1) % nombresPistasJuego.count
+            cargarYPistaActual()
+        }
+        
+        func detenerMusica() {
+            reproductorMusica?.stop()
+            reproductorMusica = nil
+        }
+    
     
     @objc func actualizarContador() {
             segundosTranscurridos += 1
@@ -137,6 +224,7 @@ class JuegoViewController: UIViewController {
         var mensajeAlerta = ""
         var tituloAlerta = ""
         var rondaGanadaOPerdida = false
+        var vidaPerdida = false
 
         if let punto = puntoObjetivo {
             
@@ -155,6 +243,7 @@ class JuegoViewController: UIViewController {
                 vidasRestantes -= 1
                 rondaGanadaOPerdida = true
                 puntoObjetivo = nil
+                vidaPerdida = true
                 
             default:
                 break
@@ -169,8 +258,8 @@ class JuegoViewController: UIViewController {
                 
             case 2, 12:
                 vidasRestantes -= 1
-
                 rondaGanadaOPerdida = true
+                vidaPerdida = true
                 
             default:
                 puntoObjetivo = sumaTotal
@@ -180,6 +269,15 @@ class JuegoViewController: UIViewController {
         if rondaGanadaOPerdida {
             tirosEnRonda = 0
         }
+        
+        if vidaPerdida {
+                    if vidasRestantes <= 0 {
+                        detenerMusica()
+                        reproducirSonido(nombre: sonidoPerderVida)
+                    } else {
+                        reproducirSonido(nombre: sonidoPerderVida)
+                    }
+                }
             
         if vidasRestantes <= 0 {
             tituloAlerta = "Fin del Juego "
@@ -209,6 +307,13 @@ class JuegoViewController: UIViewController {
         alerta.addAction(UIAlertAction(title: "Aceptar", style: .default))
         self.present(alerta, animated: true)
             }
+    
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+            if player == reproductorMusica && flag {
+                cambiarPista()
+            }
+        }
         
 }
 
