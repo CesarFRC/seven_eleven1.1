@@ -1,29 +1,32 @@
-//
-//  MusicaViewController.swift
-//  seven_eleven
-//
-//  Created by Erik Fernando Hernàndez Ayala on 25/11/25.
-//
+import AVFoundation
 
-import UIKit
-
-class MusicaViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+class MusicaViewController{
+        static let shared = MusicaViewController()
+        var reproductorMenu: AVAudioPlayer?
+        let nombrePistaMenu = "C418 - Subwoofer Lullaby - Minecraft Volume Alpha - SMORT"
+        
+        private init() { }
+        
+        func reproducirMusicaMenu() {
+            if let player = reproductorMenu, player.isPlaying {
+                return
+            }
+            guard let url = Bundle.main.url(forResource: nombrePistaMenu, withExtension: "mp3") else {
+                print("No se encontró el archivo de audio del menú")
+                return
+            }
+            do {
+                reproductorMenu = try AVAudioPlayer(contentsOf: url)
+                reproductorMenu?.numberOfLoops = -1
+                reproductorMenu?.volume = 0.5
+                reproductorMenu?.prepareToPlay()
+                reproductorMenu?.play()
+            } catch {
+                print("Error al reproducir música del menú: \(error)")
+            }
+        }
+        func detenerMusica() {
+            reproductorMenu?.stop()
+            reproductorMenu?.currentTime = 0
+        }
 }

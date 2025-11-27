@@ -47,6 +47,7 @@ class JuegoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MusicaViewController.shared.detenerMusica()
         dadoIzquierdo.image = UIImage(named: "dado1")
         dadoDerecho.image = UIImage(named: "dado1")
         actualizarUI()

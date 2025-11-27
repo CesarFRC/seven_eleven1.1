@@ -1,29 +1,19 @@
-//
-//  InstrucionesViewController.swift
-//  seven_eleven
-//
-//  Created by Erik Fernando Hernàndez Ayala on 24/11/25.
-//
-
 import UIKit
 
 class InstrucionesViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+        MusicaViewController.shared.reproducirMusicaMenu()
+        }
 
-        // Do any additional setup after loading the view.
+  
+    @IBAction func BotonAtras(_ sender: Any) {
+        cerrarVistaModal()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func cerrarVistaModal() {
+        self.dismiss(animated: true) {
+        }
     }
-    */
-
 }
