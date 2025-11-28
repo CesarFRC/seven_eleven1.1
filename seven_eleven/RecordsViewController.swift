@@ -6,6 +6,7 @@ class RecordsViewController: UIViewController,UITableViewDataSource, UITableView
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     MusicaViewController.shared.reproducirMusicaMenu()
+    cargarRecords()
     }
  
     
@@ -23,55 +24,60 @@ class RecordsViewController: UIViewController,UITableViewDataSource, UITableView
         }
     }
     
-    var records: [String] = [
-        "Donlike - 45 puntuacion",
-        "Fer - 40 puntuacion",
-        "Sergio - 30 puntuacion",
-        "Frijolito - 25 puntuacion",
-        "Carlos - 20 puntuacion"
-    ]
+    var records: [GestorRecords.Record] = []
+
     
     override func viewDidLoad() {
             super.viewDidLoad()
-        
+            
             tablaRecords.register(UITableViewCell.self, forCellReuseIdentifier: "celdaRecord")
-
             tablaRecords.dataSource = self
             tablaRecords.delegate = self
-        
             tablaRecords.backgroundColor = .clear
             tablaRecords.separatorStyle = .none
             tablaRecords.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+            inicializarRecordsPorDefecto()
+            cargarRecords()
         }
-
+        
+        func inicializarRecordsPorDefecto() {
+            let recordsGuardados = GestorRecords.shared.obtenerRecords()
+            
+            if recordsGuardados.isEmpty {
+                GestorRecords.shared.agregarRecord(nombre: "Donlike", puntuacion: 30)
+                GestorRecords.shared.agregarRecord(nombre: "Fer", puntuacion: 25)
+                GestorRecords.shared.agregarRecord(nombre: "Sergio", puntuacion: 20)
+                GestorRecords.shared.agregarRecord(nombre: "Frijolito", puntuacion: 15)
+                GestorRecords.shared.agregarRecord(nombre: "Carlos", puntuacion: 10)
+            }
+        }
+        
+        func cargarRecords() {
+            records = obtenerRecordsOrdenados()
+            tablaRecords.reloadData()
+        }
+        
+        func obtenerRecordsOrdenados() -> [GestorRecords.Record] {
+            let todosLosRecords = GestorRecords.shared.obtenerRecords()
+            return todosLosRecords.sorted { $0.puntuacion > $1.puntuacion }
+        }
+        
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return records.count
         }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let celda = tableView.dequeueReusableCell(withIdentifier: "celdaRecord", for: indexPath)
             
-            let componentes = records[indexPath.row].components(separatedBy: " - ")
-            let nombre = componentes.first ?? ""
-            let puntuacion = componentes.last ?? ""
+            let record = records[indexPath.row]
             
-            let posicion = indexPath.row + 1
-            var emoji = ""
-            switch posicion {
-            case 1: emoji = "🥇 "
-            case 2: emoji = "🥈 "
-            case 3: emoji = "🥉 "
-            default: emoji = "\(posicion). "
-            }
-            
-            celda.textLabel?.text = "\(emoji)\(nombre) - \(puntuacion)"
+            celda.textLabel?.text = "\(record.nombre) - \(record.puntuacion) pts"
             celda.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
             celda.textLabel?.textColor = .white
-            
             celda.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.17, alpha: 1)
-            
             celda.layer.cornerRadius = 10
             celda.clipsToBounds = true
+            celda.selectionStyle = .none
             
             if indexPath.row < 3 {
                 celda.layer.borderWidth = 1

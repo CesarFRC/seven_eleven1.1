@@ -44,6 +44,9 @@ class JuegoViewController: UIViewController {
         
     var indicePistaActual = 0
     
+    var juegoTerminado = false
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +94,8 @@ class JuegoViewController: UIViewController {
             segundosTranscurridos = 0
             puntuacionTotal = 0
             tirosEnRonda = 0
-        
+            juegoTerminado = false
+
             detenerTemporizador()
             detenerMusica()
             iniciarMusicaDeFondo()
@@ -206,11 +210,13 @@ class JuegoViewController: UIViewController {
     }
     
     func procesarResultado(dado1: Int, dado2: Int) {
+        if juegoTerminado {
+            return
+        }
+        
         let sumaTotal = dado1 + dado2
         print("Resultado de la tirada: \(dado1) y \(dado2). Total: \(sumaTotal). Ronda: \(rondaActual). Punto: \(puntoObjetivo ?? 0). Tiro: \(tirosEnRonda)")
             
-        var mensajeAlerta = ""
-        var tituloAlerta = ""
         var rondaGanadaOPerdida = false
         var vidaPerdida = false
 
@@ -267,17 +273,19 @@ class JuegoViewController: UIViewController {
                     }
                 }
             
-        if vidasRestantes <= 0 {
-            tituloAlerta = "Fin del Juego "
-            mensajeAlerta = "¡Te has quedado sin vidas! Finalizaste en la Ronda \(rondaActual). Puntuación Final: \(puntuacionTotal)"
-            detenerTemporizador()
-        }
-            
         actualizarUI()
 
-        if  vidasRestantes <= 0 {
-            mostrarAlerta(titulo: tituloAlerta, mensaje: mensajeAlerta)
+        
+        if vidasRestantes <= 0 {
+                    juegoTerminado = true
+                    detenerTemporizador()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self]in
+                        guard let self = self else { return }
+                        self.pedirNombreYGuardarRecord()
+            }
         }
+            
+
     }
     func actualizarUI() {
         etiquetaVidas.text = "\(vidasRestantes)"
@@ -290,14 +298,53 @@ class JuegoViewController: UIViewController {
         etiquetaTiempo.text = String(format: "%02d:%02d", minutos, segundos)
     }
     
-    func mostrarAlerta(titulo: String, mensaje: String) {
-        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
-        alerta.addAction(UIAlertAction(title: "Aceptar", style: .default))
-        self.present(alerta, animated: true)
+    
+    func pedirNombreYGuardarRecord() {
+            
+            let alerta = UIAlertController(title: "¡Juego Terminado!",
+                                           message: "Puntuación Final: \(puntuacionTotal)\n\nIngresa tu nombre:",
+                                           preferredStyle: .alert)
+            
+            alerta.addTextField { textField in
+                textField.placeholder = "Tu nombre"
+                textField.autocapitalizationType = .words
+                textField.autocorrectionType = .no
+                textField.spellCheckingType = .no
             }
-    
-    
-    
-        
+            
+            let accionGuardar = UIAlertAction(title: "Guardar", style: .default) { [weak self] _ in
+                guard let self = self else { return }
+                
+                let textoIngresado = alerta.textFields?.first?.text ?? ""
+                
+                if textoIngresado.isEmpty {
+                    self.mostrarAlertaSimple(titulo: "Error", mensaje: "Debes ingresar un nombre")
+                    return
+                }
+                
+                GestorRecords.shared.agregarRecord(nombre: textoIngresado, puntuacion: self.puntuacionTotal)
+                
+                if GestorRecords.shared.esTopRecord(puntuacion: self.puntuacionTotal) {
+                    self.mostrarAlertaSimple(titulo: "¡Felicidades!", mensaje: "¡Entraste al Top 10!")
+                } else {
+                    self.mostrarAlertaSimple(titulo: "Record Guardado", mensaje: "Tu puntuación ha sido registrada")
+                }
+            }
+            
+            let accionCancelar = UIAlertAction(title: "Cancelar", style: .cancel) { _ in
+            }
+            
+            alerta.addAction(accionGuardar)
+            alerta.addAction(accionCancelar)
+            
+            self.present(alerta, animated: true) {
+            }
+        }
+
+        func mostrarAlertaSimple(titulo: String, mensaje: String) {
+            let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+            alerta.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alerta, animated: true)
+        }
 }
 
