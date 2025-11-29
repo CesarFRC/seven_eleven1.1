@@ -162,15 +162,36 @@
                                     <action selector="BotonAtras:" destination="b1k-dq-L3f" eventType="touchUpInside" id="bfp-hF-lh9"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaP-Gm-Nrj">
+                                <rect key="frame" x="0.0" y="59" width="393" height="624"/>
+                                <mutableString key="text">El objetivo es avanzar de ronda ganando en el primer tiro (7 u 11) o repitiendo tu "Punto" antes de que se acaben tus vidas.
+1.Primera Tirada (Tiro de Salida)
+En tu primer tiro, la suma de los dados determina inmediatamente el resultado:
+Si sacas 7 u 11: ¡GANAS INMEDIATAMENTE! Pasas a la siguiente ronda.
+Si sacas 2 o 12: PIERDES UNA VIDA. Permaneces en esta misma ronda e intentas la Primera Tirada de nuevo.
+Si sacas cualquier otro número (4, 5, 6, 8, 9, 10): Este número se convierte en tu Punto. Pasas a la Fase 2.
+2. Tiros Subsecuentes (Fase del Punto)
+Si estableciste un Punto en la primera tirada, debes seguir lanzando hasta que:
+Ganas y avanzas: Si sacas de nuevo tu Punto (el número que estableciste), ¡Ganas y PASAS a la siguiente ronda!
+Pierdes una vida: Si sacas 7, 2, 11, o 12, PIERDES UNA VIDA. Tu juego continúa en la Fase 2, y debes seguir tirando para sacar tu Punto. (Solo pierdes la ronda si te quedas sin vidas).                                                             CREADORES:                                                                                   González Acosta Sergio		23170137.                                     Reyes Cortinas Cesar Fabian 	22170039. 
+Hernandez Ayala Erik Fernando	22170133.                 </mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4rD-nI-b0H"/>
                         <constraints>
                             <constraint firstItem="0iJ-va-GY8" firstAttribute="top" secondItem="4rD-nI-b0H" secondAttribute="top" id="4PM-Js-m4F"/>
+                            <constraint firstItem="PaP-Gm-Nrj" firstAttribute="top" secondItem="4rD-nI-b0H" secondAttribute="top" id="6mE-7P-Y5y"/>
                             <constraint firstItem="0iJ-va-GY8" firstAttribute="trailing" secondItem="4rD-nI-b0H" secondAttribute="trailing" id="JSz-c2-BQA"/>
+                            <constraint firstItem="4rD-nI-b0H" firstAttribute="trailing" secondItem="PaP-Gm-Nrj" secondAttribute="trailing" id="Jcz-p1-f7b"/>
                             <constraint firstItem="4rD-nI-b0H" firstAttribute="bottom" secondItem="0iJ-va-GY8" secondAttribute="bottom" id="KFF-95-aEj"/>
+                            <constraint firstItem="lFJ-en-yFM" firstAttribute="top" secondItem="PaP-Gm-Nrj" secondAttribute="bottom" constant="50" id="MFM-Hj-yhn"/>
                             <constraint firstItem="lFJ-en-yFM" firstAttribute="centerX" secondItem="vZc-VM-CKD" secondAttribute="centerX" id="UPb-ao-oMe"/>
                             <constraint firstItem="4rD-nI-b0H" firstAttribute="bottom" secondItem="lFJ-en-yFM" secondAttribute="bottom" id="cbW-kg-Qjk"/>
                             <constraint firstItem="0iJ-va-GY8" firstAttribute="leading" secondItem="vZc-VM-CKD" secondAttribute="leading" id="oiM-rw-miy"/>
+                            <constraint firstItem="PaP-Gm-Nrj" firstAttribute="leading" secondItem="4rD-nI-b0H" secondAttribute="leading" id="yRJ-vE-jrP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="P3i-QU-DJ1"/>
@@ -408,6 +429,9 @@
         <image name="nether_recortado.png" width="479.5" height="462"/>
         <image name="rio_recortado.png" width="437" height="442.5"/>
         <image name="rosa_recortado.png" width="401" height="466.5"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
